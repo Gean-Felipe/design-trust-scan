@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const TREATMENTS = [
+const TREATMENTS: { t: string; d: string }[] = [
   { t: "Facetas em resina estratificada", d: "Uma abordagem estética que permite trabalhar forma, proporção e aparência dos dentes de acordo com cada caso." },
   { t: "Lentes de contato dental", d: "Alternativa estética indicada para situações específicas, após avaliação profissional e planejamento individualizado." },
   { t: "Clínica geral", d: "Cuidados odontológicos voltados à avaliação e à manutenção da saúde bucal." },
@@ -98,17 +98,17 @@ function Index() {
                 <div className="mt-8 grid gap-6 sm:grid-cols-[auto_1fr]">
                   <span className="font-serif text-5xl text-accent">01</span>
                   <div>
-                    <h3 className="text-3xl">{TREATMENTS[0].t}</h3>
-                    <p className="mt-3 max-w-lg text-muted-foreground">{TREATMENTS[0].d}</p>
-                    <a href={wa(TREATMENTS[0].t)} target="_blank" rel="noopener noreferrer" className="btn-line mt-4">Saiba mais</a>
+                    <h3 className="text-3xl">{TREATMENTS[0]!.t}</h3>
+                    <p className="mt-3 max-w-lg text-muted-foreground">{TREATMENTS[0]!.d}</p>
+                    <a href={wa(TREATMENTS[0]!.t)} target="_blank" rel="noopener noreferrer" className="btn-line mt-4">Saiba mais</a>
                   </div>
                 </div>
               </article>
               <article className="flex flex-col justify-end bg-secondary p-8 lg:col-span-5 lg:p-12">
                 <span className="font-serif text-5xl text-foreground/40">02</span>
-                <h3 className="mt-6 text-3xl">{TREATMENTS[1].t}</h3>
-                <p className="mt-3 text-foreground/75">{TREATMENTS[1].d}</p>
-                <a href={wa(TREATMENTS[1].t)} target="_blank" rel="noopener noreferrer" className="btn-line mt-6 self-start">Saiba mais</a>
+                <h3 className="mt-6 text-3xl">{TREATMENTS[1]!.t}</h3>
+                <p className="mt-3 text-foreground/75">{TREATMENTS[1]!.d}</p>
+                <a href={wa(TREATMENTS[1]!.t)} target="_blank" rel="noopener noreferrer" className="btn-line mt-6 self-start">Saiba mais</a>
               </article>
             </div>
 
