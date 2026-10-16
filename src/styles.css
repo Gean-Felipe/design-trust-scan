@@ -5,17 +5,19 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * Design system — Dra. Michelly Ramos · Odontologia Estética
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
+ * Paleta:
+ *   Marfim quente  #F5F0E9
+ *   Preto elegante #171717
+ *   Champagne      #B99A70
+ *   Bege rosado    #D8C8B8
+ *   Branco         #FFFFFF
+ *   Cinza quente   #716963
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Tipografia:
+ *   Títulos: Cormorant Garamond (serif)
+ *   Textos / UI: Inter (sans-serif)
  */
 
 @theme inline {
@@ -54,7 +56,7 @@
   --color-ink: var(--ink);
   --color-ink-foreground: var(--ink-foreground);
   --color-ink-muted: var(--ink-muted);
-  --color-paper: oklch(1 0 0);
+  --color-paper: #FDFAF5;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --color-sidebar: var(--sidebar);
@@ -69,28 +71,28 @@
 
 :root {
   --radius: 0.125rem;
-  --background: #F5F0E9; /* marfim quente #F5F0E9 */
-  --foreground: oklch(0.205 0 0); /* preto elegante #171717 */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.205 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.205 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.953 0.013 80);
-  --secondary: oklch(0.845 0.03 70); /* bege rosado #D8C8B8 */
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.92 0.016 70);
-  --muted-foreground: oklch(0.51 0.014 60); /* cinza quente #716963 */
-  --accent: #B99A70; /* champagne #B99A70 */
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #F5F0E9;
+  --foreground: #171717;
+  --card: #FFFFFF;
+  --card-foreground: #171717;
+  --popover: #FFFFFF;
+  --popover-foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #F5F0E9;
+  --secondary: #D8C8B8;
+  --secondary-foreground: #171717;
+  --muted: #EDE8E0;
+  --muted-foreground: #716963;
+  --accent: #B99A70;
+  --accent-foreground: #171717;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.86 0.018 65);
-  --input: oklch(0.86 0.018 65);
-  --ring: oklch(0.69 0.06 75);
-  --ink: oklch(0.205 0 0);
-  --ink-foreground: oklch(0.955 0.012 75);
-  --ink-muted: oklch(0.72 0.012 70);
+  --border: #DDD5CB;
+  --input: #DDD5CB;
+  --ring: #B99A70;
+  --ink: #171717;
+  --ink-foreground: #F5F0E9;
+  --ink-muted: #9A9290;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -106,6 +108,8 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
+/* ── Base ────────────────────────────────────────────────────── */
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -116,36 +120,257 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
-  html { scroll-behavior: smooth; }
-  h1, h2, h3 { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }
+
+/* ── Utilities ───────────────────────────────────────────────── */
 
 @utility eyebrow {
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 600;
+  font-family: var(--font-sans);
 }
+
 @utility hairline {
-  display: inline-block; width: 2.5rem; height: 1px; background: var(--color-accent);
+  display: inline-block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--color-accent);
 }
+
 @utility btn-ink {
-  display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.95rem 1.6rem;
-  background: var(--color-ink); color: var(--color-ink-foreground);
-  font-size: 0.8125rem; letter-spacing: 0.06em; font-weight: 600;
-  transition: background .3s, color .3s;
-  &:hover { background: var(--color-accent); color: var(--color-ink); }
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.8rem;
+  background: var(--color-ink);
+  color: var(--color-ink-foreground);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  transition: background 0.35s ease, color 0.35s ease, transform 0.25s ease;
+  &:hover {
+    background: var(--color-accent);
+    color: var(--color-ink);
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
+
 @utility btn-line {
-  display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.95rem 0;
-  font-size: 0.8125rem; letter-spacing: 0.06em; font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 0;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
   border-bottom: 1px solid currentColor;
-  transition: color .3s;
-  &:hover { color: var(--color-accent); }
+  transition: color 0.35s ease, border-color 0.35s ease;
+  &:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
 }
+
+/* Photo slot — remove diagonal stripes pattern (was placeholder) */
 @utility photo-slot {
-  background: repeating-linear-gradient(135deg, var(--color-secondary) 0 1px, transparent 1px 14px), var(--color-muted);
+  overflow: hidden;
+  background: var(--color-muted);
 }
+
+/* ── Scroll Reveal Animations ───────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger delays for children */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 0.3s; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 0.4s; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 0.5s; }
+
+/* ── Image hover zoom ──────────────────────────────────────── */
+
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.04);
+}
+
+/* ── Treatment card hover ──────────────────────────────────── */
+
+.treatment-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.treatment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Gallery lightbox ──────────────────────────────────────── */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(23, 23, 23, 0.92);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+  cursor: zoom-out;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 2px;
+  animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5F0E9;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.lightbox-close:hover {
+  opacity: 0.7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ── Respect reduced motion ─────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .img-zoom img {
+    transition: none;
+  }
+
+  .img-zoom:hover img {
+    transform: none;
+  }
+
+  .treatment-card {
+    transition: none;
+  }
+
+  .treatment-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .lightbox-overlay,
+  .lightbox-overlay img {
+    animation: none;
+  }
+}
+
 @layer base {
 }
