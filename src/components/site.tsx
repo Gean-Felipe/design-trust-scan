@@ -110,9 +110,14 @@ export function Footer() {
 }
 
 /** Espaço reservado para fotografia real ainda não fornecida. */
-export function PhotoSlot({ label, className = "" }: { label: string; className?: string }) {
+export function PhotoSlot({ label, src, className = "" }: { label: string; className?: string }) {
   return (
     <div className={`photo-slot relative flex items-end ${className}`} role="img" aria-label={label}>
+      <img
+        src={src}
+        alt={label}
+        className="w-full h-full object-cover rounded-lg"
+      />
       <span className="eyebrow m-5 bg-background/85 px-3 py-2 text-muted-foreground">{label}</span>
     </div>
   );
